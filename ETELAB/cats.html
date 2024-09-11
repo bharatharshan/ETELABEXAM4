@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Breeds</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0; /* Adjusted to work with navbar */
+        }
+
+        /* Navbar styling */
+        .navbar {
+            width: 100%;
+            background-color: #3498db;
+            padding: 3px 20px;
+           
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            
+        }
+
+        .navbar h1 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: -8px;
+            margin-top: 0px;
+           
+        }
+        .navbar h1 a {
+    color: white;
+    text-decoration: none; /* Remove underline */
+}
+
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            
+        }
+
+        .navbar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile menu */
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                gap: 10px;
+                background-color: #333;
+                position: absolute;
+                top: 50px;
+                right: 20px;
+                padding: 10px;
+                display: none;
+            }
+
+            .navbar ul.open {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+                background-color: #333;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+            }
+        }
+
+        /* Hide the menu toggle on larger screens */
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        /* Content styling */
+        h1 {
+            margin-top: 100px; /* Adjusted for the fixed navbar */
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .cat-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .cat-card {
+            background-color: white;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cat-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .cat-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .cat-details {
+            font-size: 14px;
+        }
+        footer {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 1px;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1><a href="cat.html">Cat Haven</a></h1>
+        <ul id="nav-links">
+            <li><a href="cats.html">Cats</a></li>
+            <li><a href="aboutuscat.html">About us</a></li>
+            <li><a href="formsforcatlvrs.html">Sign up</a></li>
+           
+        </ul>
+    </nav>
+
+    <h1>Cat Breeds</h1>
+
+    <div class="cat-container" id="cat-container"></div>
+    <footer>
+        <p>&copy; 2024 Cat Haven. All rights reserved.</p>
+        <p>Follow us on 
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </p>
+    </footer>
+
+    <script>
+        // Fetch the JSON data
+        fetch('https://raw.githubusercontent.com/bharatharshan/ETELABEXAM/main/jsoncats.json')
+            .then(response => response.json())
+            .then(data => {
+                const catContainer = document.getElementById('cat-container');
+                
+                data.forEach(cat => {
+                    const catCard = document.createElement('div');
+                    catCard.classList.add('cat-card');
+                    
+                    catCard.innerHTML = `
+                        <img src="${cat.url}" alt="${cat.name}">
+                        <div class="cat-name">${cat.name}</div>
+                        <div class="cat-details">
+                            <p><strong>Temperament:</strong> ${cat.temperament}</p>
+                            <p><strong>Origin:</strong> ${cat.origin}</p>
+                            <p><strong>Life Span:</strong> ${cat.life_span} years</p>
+                            <p>${cat.description}</p>
+                        </div>
+                    `;
+                    
+                    catContainer.appendChild(catCard);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        // Menu toggle for mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

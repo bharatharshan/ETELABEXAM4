@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up form</title>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .valid {
+            border: 2px solid green;
+        }
+
+        .invalid {
+            border: 2px solid red;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        #submitButton:disabled {
+            background-color: lightgray;
+            cursor: not-allowed;
+        }
+
+        .form-container {
+            margin: 80px auto 30px; 
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #007bff;
+        }
+
+        @media (max-width: 576px) {
+            .form-container {
+                padding: 15px;
+            }
+
+            .form-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Navbar styling */
+        .navbar {
+            width: 100%;
+            background-color: #3498db;
+            padding: 15px 20px;
+        
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .navbar h1 {
+            color: white;
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .navbar ul li a:hover {
+            text-decoration: underline;
+        }
+
+    
+        @media (max-width: 576px) {
+            .navbar ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+   
+    <nav class="navbar">
+        <h1>Cat Haven</h1>
+        <ul>
+            <li><a href="cat.html">Home</a></li>
+            <li><a href="aboutuscat.html">About Us</a></li>
+            <li><a href="formsforcatlvrs.html">Sign up</a></li>
+           
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-sm-12">
+                <div class="form-container">
+                    <h2 class="form-title">Signup Form</h2>
+                    
+                   
+                    <form id="registrationForm" class="needs-validation" action="cat.html" method="POST">
+                      
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                            <span id="nameError" class="error-message"></span>
+                        </div>
+
+                      
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+                            <span id="emailError" class="error-message"></span>
+                        </div>
+
+                       
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+                            <span id="passwordError" class="error-message"></span>
+                        </div>
+
+                  
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password:</label>
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password">
+                            <span id="confirmPasswordError" class="error-message"></span>
+                        </div>
+
+                       
+                        <div class="form-group">
+                            <label for="dob">Date of Birth:</label>
+                            <input type="date" class="form-control" id="dob" name="dob">
+                            <span id="dobError" class="error-message"></span>
+                        </div>
+
+                        
+                        <button type="submit" id="submitButton" class="btn btn-primary btn-block" disabled>Submit</button>
+                        <span id="formError" class="error-message"></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        function validateName(name) {
+            const regex = /^[A-Za-z\s]{3,}$/;
+            return regex.test(name);
+        }
+
+        function validateEmail(email) {
+            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return regex.test(email);
+        }
+
+        function validatePassword(password) {
+            const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            return regex.test(password);
+        }
+
+        function validateAge(dob) {
+            const today = new Date();
+            const birthDate = new Date(dob);
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDifference = today.getMonth() - birthDate.getMonth();
+            if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+        }
+
+        const form = document.getElementById('registrationForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const dobInput = document.getElementById('dob');
+        const submitButton = document.getElementById('submitButton');
+        const formError = document.getElementById('formError');
+
+        form.addEventListener('input', function(event) {
+            let isFormValid = true;
+
+            // Name validation
+            if (nameInput.value !== '') {
+                if (validateName(nameInput.value)) {
+                    nameInput.classList.add('valid');
+                    nameInput.classList.remove('invalid');
+                    document.getElementById('nameError').textContent = '';
+                } else {
+                    nameInput.classList.add('invalid');
+                    nameInput.classList.remove('valid');
+                    document.getElementById('nameError').textContent = 'Invalid name. Must be at least 3 alphabetic characters.';
+                    isFormValid = false;
+                }
+            } else {
+                isFormValid = false;
+            }
+
+            // Email validation
+            if (emailInput.value !== '') {
+                if (validateEmail(emailInput.value)) {
+                    emailInput.classList.add('valid');
+                    emailInput.classList.remove('invalid');
+                    document.getElementById('emailError').textContent = '';
+                } else {
+                    emailInput.classList.add('invalid');
+                    emailInput.classList.remove('valid');
+                    document.getElementById('emailError').textContent = 'Invalid email format.';
+                    isFormValid = false;
+                }
+            } else {
+                isFormValid = false;
+            }
+
+            // Password validation
+            if (passwordInput.value !== '') {
+                if (validatePassword(passwordInput.value)) {
+                    passwordInput.classList.add('valid');
+                    passwordInput.classList.remove('invalid');
+                    document.getElementById('passwordError').textContent = '';
+                } else {
+                    passwordInput.classList.add('invalid');
+                    passwordInput.classList.remove('valid');
+                    document.getElementById('passwordError').textContent = 'Password must be at least 8 characters long and contain both letters and numbers.';
+                    isFormValid = false;
+                }
+            } else {
+                isFormValid = false;
+            }
+
+            // Confirm password validation
+            if (confirmPasswordInput.value !== '') {
+                if (confirmPasswordInput.value === passwordInput.value) {
+                    confirmPasswordInput.classList.add('valid');
+                    confirmPasswordInput.classList.remove('invalid');
+                    document.getElementById('confirmPasswordError').textContent = '';
+                } else {
+                    confirmPasswordInput.classList.add('invalid');
+                    confirmPasswordInput.classList.remove('valid');
+                    document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+                    isFormValid = false;
+                }
+            } else {
+                isFormValid = false;
+            }
+
+           
+            if (dobInput.value !== '') {
+                const age = validateAge(dobInput.value);
+                if (age >= 18) {
+                    dobInput.classList.add('valid');
+                    dobInput.classList.remove('invalid');
+                    document.getElementById('dobError').textContent = '';
+                } else {
+                    dobInput.classList.add('invalid');
+                    dobInput.classList.remove('valid');
+                    document.getElementById('dobError').textContent = 'You must be at least 18 years old.';
+                    isFormValid = false;
+                }
+            } else {
+                isFormValid = false;
+            }
+
+            // Enable or disable the submit button based on form validity
+            submitButton.disabled = !isFormValid;
+        });
+    </script>
+</body>
+</html>

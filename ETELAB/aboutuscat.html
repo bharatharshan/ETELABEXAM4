@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>About Us - Cat Haven</title>
+    <style>
+        /* General Page Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            width: 100%;
+            background-color: #3498db;
+            padding: 15px 20px;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .navbar h1 {
+            color: white;
+            font-size: 24px;
+        }
+        .navbar h1 a {
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .navbar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* For responsiveness on smaller screens */
+        @media (max-width: 600px) {
+            .navbar ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background: url('download.jpeg') no-repeat center center;
+            background-size: cover;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            max-width: 600px;
+        }
+
+        .hero .cta a:hover {
+            background-color: #ff3c2e;
+        }
+
+        /* Content styling */
+        .content {
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            color: #333;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* About Us and Founder Containers */
+        .about-us-container,
+        .founder-container {
+            flex: 1 1 100%;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .about-us-container:hover,
+        .founder-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-us-container h2,
+        .founder-container h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .about-us-container p,
+        .founder-container p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .founder-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .founder-container img {
+            flex: 1 1 200px;
+            max-width: 200px;
+            height: auto;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .founder-info {
+            flex: 2;
+        }
+
+        footer {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1><a href="cat.html">Cat Haven</a></h1>
+        <ul>
+            <li><a href="cats.html">Cats</a></li>
+            <li><a href="aboutuscat.html">About Us</a></li>
+            <li><a href="formsforcatlvrs.html">Sign up</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Discover the Magic of Cats</h1>
+        <p>Join our community of cat lovers and celebrate the charm, beauty, and mystery of our feline friends.</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- About Us Container -->
+        <div class="about-us-container">
+            <h2>About Us</h2>
+            <p>At Cat Haven, we believe in celebrating the beauty, mystery, and charm of cats. From their playful antics to their quiet companionship, cats have a special place in our hearts.</p>
+            <p>We started as a small group of feline enthusiasts, determined to create a space where every cat lover could come together to share stories, tips, and, of course, pictures of their beloved furballs. Today, we’re proud to be a thriving community dedicated to everything cats.</p>
+            <p>Whether you’re a long-time cat parent or just starting to learn about these incredible creatures, Cat Haven is here for you. Join us as we explore the world of cats – from adoption advice and care tips to fun facts and heartwarming stories. Together, let’s make the world a better place, one purr at a time.</p>
+        </div>
+
+        <!-- Founder Container -->
+        <div class="founder-container">
+            <img src="WhatsApp Image 2024-07-28 at 05.05.36_85c2ea74.jpg"alt="Founder Image">
+            <div class="founder-info">
+                <h2>Meet Our Founder</h2>
+                <p>Our founder, Bharat Harshan , is a lifelong cat lover and advocate. His passion for feline welfare led him to create Cat Haven in 2010. With over a decade of experience in animal care and community building, Bharat has transformed Cat Haven into a haven for cats and their human companions alike.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Cat Haven. All rights reserved.</p>
+        <p>Follow us on 
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </p>
+    </footer>
+
+</body>
+</html>
